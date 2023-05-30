@@ -35,6 +35,11 @@ class ClientAddressListController extends GetxController{
     return address;
   }
 
+  void goToPaymentsMethods() {
+    print('redirect to payments');
+    Get.toNamed('/client/payments/payment_methods');
+  }
+/*
   void createOrder() async{
     Address a = Address.fromJson(GetStorage().read('address') ?? {});
     List<Product> products = [];
@@ -60,12 +65,13 @@ class ClientAddressListController extends GetxController{
       Get.toNamed('/client/payments/create');
     }
 
-  }
+  }*/
 
   void handleRadioValueChange(int? value){
     radioValue.value = value!;
     print('valor seleccionado: ${value}');
     // se guarda la direccion seleccionada por el usuario en storage en sesion
+    print('Addres to save: ${address[value].toJson()}');
     GetStorage().write('address', address[value].toJson());
     update();
   }

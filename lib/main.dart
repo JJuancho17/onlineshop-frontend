@@ -12,6 +12,7 @@ import 'package:flutter_delivery/src/pages/client/orders/detail/client_order_det
 import 'package:flutter_delivery/src/pages/client/orders/map/client_orders_map_page.dart';
 import 'package:flutter_delivery/src/pages/client/payments/create/client_payments_create_page.dart';
 import 'package:flutter_delivery/src/pages/client/payments/installments/client_payments_installments_page.dart';
+import 'package:flutter_delivery/src/pages/client/payments/payment_methods/payment_methods_page.dart';
 import 'package:flutter_delivery/src/pages/client/products/list/client_products_list_page.dart';
 import 'package:flutter_delivery/src/pages/client/profile/info/client_profile_info_page.dart';
 import 'package:flutter_delivery/src/pages/client/profile/info/update/client_profile_update_page.dart';
@@ -80,7 +81,8 @@ class _MyAppState extends State<MyApp> {
         GetPage(name: '/client/orders/create', page: () => ClientOrdersCreatePage()),
         GetPage(name: '/client/orders/map', page: () => ClientOrdersMapPage()),
         GetPage(name: '/client/orders/detail', page: () => ClientOrderDetailPage()),
-        GetPage(name: '/client/address/create', page: () => ClientAddressCreatePage()),
+        GetPage(name: '/client/payments/payment_methods', page: () => PaymentMethodsPage()),
+        GetPage(name: '/client/address/list', page: () => ClientAddressListPage()),
         GetPage(name: '/client/address/list', page: () => ClientAddressListPage()),
         GetPage(name: '/client/payments/create', page: () => ClientPaymentsCreatePage()),
         GetPage(name: '/client/payments/installments', page: () => ClientPaymentsInstallmentsPage()),

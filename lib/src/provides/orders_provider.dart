@@ -78,9 +78,8 @@ class OrdersProvider extends GetConnect{
           //'Authorization': userSession.sessionToken ?? ''
         }
     ); // ESPERAR HASTA QUE EL SERVIDOR NOS RETORNE LA RESPUESTA
-    print(response.body);
+    print('respuesta de orden: $response.body');
     ResponseApi responseApi = ResponseApi.fromJson(response.body);
-    print(responseApi.toJson());
     return responseApi;
   }
   // METODO QUE ACTUALIZA LA ORDEN AL ESTADO DESPACHADO

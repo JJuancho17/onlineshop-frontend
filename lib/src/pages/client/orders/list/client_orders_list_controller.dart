@@ -7,7 +7,7 @@ import 'package:get_storage/get_storage.dart';
 class ClientOrdersListController extends GetxController{
 
   OrdersProvider ordersProvider = OrdersProvider();
-  List<String> status = <String>['PAGADO', 'DESPACHADO', 'EN CAMINO', 'ENTREGADO'].obs;
+  List<String> status = <String>['PAGADO', 'DESPACHADO', 'EN CAMINO', 'ENTREGADO', 'POR COBRAR'].obs;
 
   User user = User.fromJson(GetStorage().read('user') ?? {});
 
