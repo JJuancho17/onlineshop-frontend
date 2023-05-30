@@ -67,8 +67,8 @@ class UsersProvider extends GetConnect {
     return responseApi;
   }
 
-  Future<Stream> createWithImage(User user, File image) async {
-    Uri uri = Uri.http(Environment.API_URL_OLD, '/api/register/image');
+  Future<ResponseApi> createWithImage(User user, File image) async {
+    Uri uri = Uri.parse('${Environment.API_URL_OLD}/api/register/image/');
     final request = http.MultipartRequest('POST', uri);
     request.files.add(http.MultipartFile(
         'image',
@@ -76,10 +76,22 @@ class UsersProvider extends GetConnect {
         await image.length(),
         filename: basename(image.path)
     ));
-    request.fields['user'] = json.encode(user);
-    final response = await request.send();
-    return response.stream.transform(utf8.decoder);
+    request.fields['name'] = user.name!;
+    request.fields['email'] = user.email!;
+    request.fields['username'] = user.username!;
+    request.fields['lastname'] = user.lastname!;
+    request.fields['phone'] = user.phone!;
+    request.fields['password'] = user.password!;
+
+    var response = await request.send();
+    var responseData = await response.stream.bytesToString(); // Leer el cuerpo de la respuesta como una cadena de texto
+    var jsonBody = json.decode(responseData);
+    print(jsonBody);// Analizar el cuerpo de la respuesta como un objeto JSON
+    return ResponseApi.fromJson(jsonBody);
+
   }
+
+
   Future<Stream> updateWithImage(User user, File image) async {
     Uri uri = Uri.http(Environment.API_URL_OLD, '/api/users/update');
     final request = http.MultipartRequest('PUT', uri);
@@ -93,24 +105,6 @@ class UsersProvider extends GetConnect {
     request.fields['user'] = json.encode(user);
     final response = await request.send();
     return response.stream.transform(utf8.decoder);
-  }
-
-  /*
-  * GET X
-   */
-  Future<ResponseApi> createUserWithImageGetX(User user, File image) async {
-    FormData form = FormData({
-      'image': MultipartFile(image, filename: basename(image.path)),
-      'user': json.encode(user)
-    });
-    Response response = await post('$url/createWithImage', form);
-
-    if (response.body == null) {
-      Get.snackbar('Error en la peticion', 'No se pudo crear el usuario');
-      return ResponseApi();
-    }
-    ResponseApi responseApi = ResponseApi.fromJson(response.body);
-    return responseApi;
   }
 
   Future<ResponseApi> login(String email, String password) async {

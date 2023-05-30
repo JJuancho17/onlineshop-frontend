@@ -24,14 +24,6 @@ class _RegisterPageState extends State<RegisterPage> {
     _passwordVisible1 = false;
   }
 
-  final emailController = TextEditingController();
-  final nameController = TextEditingController();
-  final usernameController = TextEditingController();
-  final lastnameController = TextEditingController();
-  final phoneController = TextEditingController();
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,7 +131,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Container(
       margin: const EdgeInsets.only(top: 5),
       child: TextField(
-        controller: con.usernameController,
+        controller: con.userNameController,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
             hintText: 'Nombre de usuario',
@@ -322,7 +314,7 @@ class _RegisterPageState extends State<RegisterPage> {
         margin: const EdgeInsets.only(top: 50),
         alignment: Alignment.topCenter,
         child: GestureDetector(
-            //onTap: () => con.showAlertDialog(context),
+            onTap: () => con.showAlertDialog(context),
             child: GetBuilder<RegisterController>(
               builder: (value) => CircleAvatar(
                 backgroundImage: con.imageFile != null
